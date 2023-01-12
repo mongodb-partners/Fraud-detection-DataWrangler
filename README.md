@@ -61,7 +61,7 @@ To implement a fraud detection system using AWS and MongoDB, follow the below gi
 - Configure [S3](https://docs.aws.amazon.com/quickstarts/latest/s3backup/step-1-create-bucket.html) for storing data.
 
 #### MSK
-Set up [MSK](https://github.com/mongodb-partners/Atlas_to_Redshift#step-by-step-instructions-for-setting-up-amazon-msk-job) for streaming data from MongoDB to S3
+Set up [MSK](https://github.com/mongodb-partners/Atlas_to_Redshift#step-by-step-instructions-for-setting-up-amazon-msk-job) for streaming data from MongoDB Atlas to S3
 
 #### Data Wrangler
 - Create a data wrangler with endpoint deployment as stated in the below steps
