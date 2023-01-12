@@ -17,7 +17,7 @@ Machine learning techniques, such as artificial neural networks and decision tre
 
 
 ## MongoDB Serverless
-MongoDB Serverless is a fully managed service that allows you to run MongoDB workloads using a serverless model. With MongoDB Serverless, you only pay for the computing and storage resources that you use, and the service automatically scales up or down based on the workload demands.
+[MongoDB Serverless](https://www.mongodb.com/docs/atlas/manage-serverless-instances/#manage-serverless-instances) is a fully managed service that allows you to run MongoDB workloads using a serverless model. With MongoDB Serverless, you only pay for the computing and storage resources that you use, and the service automatically scales up or down based on the workload demands.
 
 MongoDB Serverless is built on top of the MongoDB Atlas platform, which is a global cloud database service that supports the development, deployment, and management of MongoDB workloads. You can use MongoDB Serverless to build applications that require a flexible, scalable, and highly available database without the need to manage the underlying infrastructure.
 
@@ -25,7 +25,7 @@ To use MongoDB Serverless, you will need to sign up for a [MongoDB Atlas](https:
  
 
 ## Amazon Data Wrangler
-Amazon Data Wrangler allows users to analyze, visualize, and manipulate data in Amazon Redshift, Amazon S3, and Amazon Athena. It is designed to make it easier for data analysts and data scientists to work with large datasets and build data pipelines.
+[Amazon Data Wrangler](https://aws.amazon.com/sagemaker/data-wrangler/?sagemaker-data-wrangler-whats-new.sort-by=item.additionalFields.postDateTime&sagemaker-data-wrangler-whats-new.sort-order=desc) allows users to analyze, visualize, and manipulate data in Amazon Redshift, Amazon S3, and Amazon Athena. It is designed to make it easier for data analysts and data scientists to work with large datasets and build data pipelines.
 
 With Amazon Data Wrangler, users can use Python to load data into Amazon Redshift, create data transformations, and build data pipelines. It includes a number of pre-built connectors and functions for working with data from a variety of sources, including CSV, JSON, and Excel files.
 
