@@ -124,7 +124,7 @@ class AddItemViewModel(
     }
 
 
-    private fun invokeFunction(): Int {
+    private fun invokeFunction(): String {
         val id = generateId()
         val ipAddress = getIPv4Address()
         val deviceId = generateDeviceId()
@@ -139,29 +139,29 @@ class AddItemViewModel(
         val response = client.newCall(request).execute()
         val responseBody = response.body.string()
         println("Response : $responseBody")
-        return responseBody.toInt()
+        return responseBody
     }
 
     fun addTask() {
         CoroutineScope(Dispatchers.IO).launch {
+            var fraud = invokeFunction()
             runCatching {
-                val notFraud = invokeFunction()
-                if (notFraud==1) {
-                    repository.addCard(
-                        cardNumber.value,
-                        cardType.value,
-                        phone.value,
-                        emailDomain.value,
-                        trxAmount.value
-                    )
-                }
-                else {
-                    println("Response: Not added! Its a Fraud case$notFraud")
-                    throw Throwable()
-                }
+                repository.addCard(
+                    cardNumber.value,
+                    cardType.value,
+                    phone.value,
+                    emailDomain.value,
+                    trxAmount.value,
+                    fraud.toBoolean()
+                )
             }.onSuccess {
                 withContext(Dispatchers.Main) {
-                    _addItemEvent.emit(AddItemEvent.Info("'${cardNumber.value}' added successfully."))
+                    if (fraud.toBoolean()) {
+                        _addItemEvent.emit(AddItemEvent.Info("'${cardNumber.value}' added successfully, It's a fraud"))
+                    }
+                    else {
+                        _addItemEvent.emit(AddItemEvent.Info("'${cardNumber.value}' added successfully, It's not a fraud"))
+                    }
                 }
             }.onFailure {
                 withContext(Dispatchers.Main) {

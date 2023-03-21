@@ -38,7 +38,7 @@ interface SyncRepository {
     /**
      * Adds a task that belongs to the current user using the specified [taskSummary].
      */
-    suspend fun addCard(cardNumber: String, cardType: String, phoneNum: String, emailDomin: String, trxAmount: String)
+    suspend fun addCard(cardNumber: String, cardType: String, phoneNum: String, emailDomin: String, trxAmount: String, isFraud: Boolean)
 
     /**
      * Updates the Sync subscriptions based on the specified [SubscriptionType].
@@ -122,7 +122,7 @@ class RealmSyncRepository(
         }
     }
 
-    override suspend fun addCard(cardNumber: String, cardType: String, phoneNum: String, emailDomin: String, trxAmount: String) {
+    override suspend fun addCard(cardNumber: String, cardType: String, phoneNum: String, emailDomin: String, trxAmount: String, isFraud: Boolean) {
         val task = Details().apply {
             owner_id = currentUser.id
             card_number = cardNumber
@@ -130,6 +130,7 @@ class RealmSyncRepository(
             phone_number = phoneNum
             email_domin = emailDomin
             trx_amount = trxAmount
+            isComplete = isFraud
         }
         realm.write {
             copyToRealm(task)
@@ -191,7 +192,7 @@ class RealmSyncRepository(
 class MockRepository : SyncRepository {
     override fun getTaskList(): Flow<ResultsChange<Details>> = flowOf()
     override suspend fun toggleIsComplete(task: Details) = Unit
-    override suspend fun addCard(cardNumber: String, cardType: String, phoneNum: String, emailDomin: String, trxAmount: String) = Unit
+    override suspend fun addCard(cardNumber: String, cardType: String, phoneNum: String, emailDomin: String, trxAmount: String, isFraud: Boolean) = Unit
     override suspend fun updateSubscriptions(subscriptionType: SubscriptionType) = Unit
     override suspend fun deleteTask(task: Details) = Unit
     override fun getActiveSubscriptionType(realm: Realm?): SubscriptionType = SubscriptionType.ALL
